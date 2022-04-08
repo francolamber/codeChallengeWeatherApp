@@ -1,0 +1,5 @@
+export enum NETWORK_STATUS {
+  FETCHING = "FETCHING",
+  READY = "READY",
+  ERROR = "ERROR",
+}
