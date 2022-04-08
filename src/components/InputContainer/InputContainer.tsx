@@ -68,7 +68,7 @@ const InptuContainer: React.FC<InputContainerProps> = ({
   return (
     <ContainerForm>
       <InputAddress
-        placeholder="Write city name and press '>' to get weather"
+        placeholder="Write address and press '>' to get weather"
         onChange={onChangeAddress}
         value={address}
         onKeyPress={(e) => {

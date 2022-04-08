@@ -46,7 +46,7 @@ export const getWeather =
           data: [],
           error: err,
           errorMessage:
-            "An unexpected problem has occurred. Try again later or type mok to get mocked data.",
+            "An unexpected problem has occurred. Try again later or type mok to get mocked data. or test this address: 654 Market St, San Diego",
         },
       });
       console.log(`Error getting weather: ${err}`);
