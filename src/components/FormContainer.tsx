@@ -77,7 +77,7 @@ const FormContainer: React.FC = () => {
     JSON.parse(localStorage.getItem("cityHistory")) || []
   );
   const showRecentSearchedCities =
-    !weatherDataLoading && !displayWeatherResults && cityHistory?.length;
+    !weatherDataLoading && !displayWeatherResults && cityHistory?.length > 0;
 
   return (
     <ContainerApp>
