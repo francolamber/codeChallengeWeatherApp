@@ -14,40 +14,40 @@ import {
 } from "./RecentlySearchedCities.styles";
 
 const RecentlySearchedCities: React.FC<RecentlySearchedCitiesProps> = ({
-  cityHistory,
-  setCityHistory,
-  setCity,
+  addressHistory,
+  setAddressHistory,
+  setAddress,
 }) => {
   const dispatch = useDispatch();
 
-  const handleOnClickHistory = (city): void => {
-    setCity(city);
-    dispatch(getWeather(city));
+  const handleOnClickHistory = (address): void => {
+    setAddress(address);
+    dispatch(getWeather(address));
   };
 
-  const handleRemoveFromHistory = (cityIndex): void => {
-    let newCities = [...cityHistory];
+  const handleRemoveFromHistory = (addressIndex): void => {
+    let newCities = [...addressHistory];
 
-    newCities.splice(cityIndex, 1);
+    newCities.splice(addressIndex, 1);
 
-    setCityHistory(newCities);
+    setAddressHistory(newCities);
 
-    localStorage.setItem("cityHistory", JSON.stringify(newCities));
+    localStorage.setItem("addressHistory", JSON.stringify(newCities));
   };
 
   return (
     <ContainerRecentSearched>
       <RecentlySearchedTitle>Recently searched cities</RecentlySearchedTitle>
-      {cityHistory.map((city, index) => (
+      {addressHistory.map((address, index) => (
         <RecentSearched key={index}>
-          <div onClick={() => handleOnClickHistory(city)}>{city}</div>
+          <div onClick={() => handleOnClickHistory(address)}>{address}</div>
           <RecentSearchedActionsContainer>
             <FontAwesomeIcon
               icon={faTrash}
               onClick={() => handleRemoveFromHistory(index)}
             />
             <SelectRecentSearchedContainer
-              onClick={() => handleOnClickHistory(city)}
+              onClick={() => handleOnClickHistory(address)}
             >
               <FontAwesomeIcon icon={faCircleArrowRight} />
             </SelectRecentSearchedContainer>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const InputCity = styled.input`
+export const InputAddress = styled.input`
   background: transparent;
   width: 90%;
   padding: 5px;

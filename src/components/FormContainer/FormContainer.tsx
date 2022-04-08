@@ -25,21 +25,21 @@ const FormContainer: React.FC = () => {
   const weatherErrorMessage = useSelector(selectWeatherErrorMessage);
   const weatherDataLoading = weatherDataStatus === NETWORK_STATUS.FETCHING;
   const displayWeatherResults = useSelector(selectDisplayWeatherResults);
-  const [city, setCity] = useState("");
-  const [cityHistory, setCityHistory] = useState(
-    JSON.parse(localStorage.getItem("cityHistory")) || []
+  const [address, setAddress] = useState("");
+  const [addressHistory, setAddressHistory] = useState(
+    JSON.parse(localStorage.getItem("addressHistory")) || []
   );
   const showRecentSearchedCities =
-    !weatherDataLoading && !displayWeatherResults && cityHistory?.length > 0;
+    !weatherDataLoading && !displayWeatherResults && addressHistory?.length > 0;
 
   return (
     <ContainerApp>
       {!displayWeatherResults && <Title>Weather App</Title>}
       <InptuContainer
-        city={city}
-        setCity={setCity}
-        cityHistory={cityHistory}
-        setCityHistory={setCityHistory}
+        address={address}
+        setAddress={setAddress}
+        addressHistory={addressHistory}
+        setAddressHistory={setAddressHistory}
       />
       {weatherDataLoading && (
         <SpinLoaderContainer>
@@ -51,9 +51,9 @@ const FormContainer: React.FC = () => {
       )}
       {showRecentSearchedCities && (
         <RecentlySearchedCities
-          setCity={setCity}
-          cityHistory={cityHistory}
-          setCityHistory={setCityHistory}
+          setAddress={setAddress}
+          addressHistory={addressHistory}
+          setAddressHistory={setAddressHistory}
         />
       )}
       {displayWeatherResults &&

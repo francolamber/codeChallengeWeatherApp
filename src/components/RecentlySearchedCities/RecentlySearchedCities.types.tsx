@@ -1,5 +1,5 @@
 export interface RecentlySearchedCitiesProps {
-  cityHistory: string[];
-  setCity: (arg: string) => void;
-  setCityHistory: (arg: string[]) => void;
+  addressHistory: string[];
+  setAddress: (arg: string) => void;
+  setAddressHistory: (arg: string[]) => void;
 }

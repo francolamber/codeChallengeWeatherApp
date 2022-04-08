@@ -1,6 +1,6 @@
 export interface InputContainerProps {
-  city: string;
-  cityHistory: string[];
-  setCity: (arg: string) => void;
-  setCityHistory: (arg: string[]) => void;
+  address: string;
+  addressHistory: string[];
+  setAddress: (arg: string) => void;
+  setAddressHistory: (arg: string[]) => void;
 }

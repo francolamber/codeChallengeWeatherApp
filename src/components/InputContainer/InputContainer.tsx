@@ -7,78 +7,78 @@ import { clearWeather } from "../../reduxStore/weather/actions/clearWeather";
 import * as React from "react";
 import {
   ContainerForm,
-  InputCity,
+  InputAddress,
   FromRevomeIcon,
   ButtonSubmit,
 } from "./InputContainer.styles";
 import { InputContainerProps } from "./InputContainer.types";
 
 const InptuContainer: React.FC<InputContainerProps> = ({
-  city,
-  setCity,
-  cityHistory,
-  setCityHistory,
+  address,
+  setAddress,
+  addressHistory,
+  setAddressHistory,
 }) => {
   const dispatch = useDispatch();
 
-  const onChangeCity = (e): void => {
-    setCity(e.target.value);
+  const onChangeAddress = (e): void => {
+    setAddress(e.target.value);
 
-    if (city === "") {
+    if (address === "") {
       dispatch(clearWeather());
     }
   };
 
-  const handleDeleteInputCity = (): void => {
-    setCity("");
+  const handleDeleteInputAddress = (): void => {
+    setAddress("");
     dispatch(clearWeather());
   };
 
-  const addCityHistoryToLocalStorage = (city): void => {
-    const cities = cityHistory;
+  const addAddressHistoryToLocalStorage = (address): void => {
+    const cities = addressHistory;
     let newCities = [];
 
-    if (cities.includes(city)) {
+    if (cities.includes(address)) {
       return;
     }
 
     if (cities.length === 0) {
-      newCities = [city];
+      newCities = [address];
 
-      localStorage.setItem("cityHistory", JSON.stringify(newCities));
+      localStorage.setItem("addressHistory", JSON.stringify(newCities));
     } else {
-      newCities = [...cities, city];
+      newCities = [...cities, address];
     }
 
     if (newCities.length > 5) {
       newCities.shift();
     }
 
-    setCityHistory(newCities);
-    localStorage.setItem("cityHistory", JSON.stringify(newCities));
+    setAddressHistory(newCities);
+    localStorage.setItem("addressHistory", JSON.stringify(newCities));
   };
 
   const handleOnClick = (): void => {
-    if (city !== "") {
-      dispatch(getWeather(city));
-      addCityHistoryToLocalStorage(city);
+    if (address !== "") {
+      dispatch(getWeather(address));
+      addAddressHistoryToLocalStorage(address);
     }
   };
 
   return (
     <ContainerForm>
-      <InputCity
+      <InputAddress
         placeholder="Write city name and press '>' to get weather"
-        onChange={onChangeCity}
-        value={city}
+        onChange={onChangeAddress}
+        value={address}
         onKeyPress={(e) => {
           if (e.key === "Enter") {
             handleOnClick();
           }
         }}
       />
-      {city !== "" && (
-        <FromRevomeIcon onClick={() => handleDeleteInputCity()}>
+      {address !== "" && (
+        <FromRevomeIcon onClick={() => handleDeleteInputAddress()}>
           <FontAwesomeIcon icon={faXmark} />
         </FromRevomeIcon>
       )}

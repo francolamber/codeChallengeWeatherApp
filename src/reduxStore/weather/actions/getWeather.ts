@@ -1,12 +1,14 @@
 import types from "../types";
 import { NETWORK_STATUS } from "../../../utilities/constants/networkStatus";
 import { getWeatherData } from "../helpers";
+import axios from "axios";
 
 export const getWeather =
-  (city) =>
+  (address) =>
   async (dispatch): Promise<void> => {
-    const mokedData = city === "mok" ? true : false;
-    const input = encodeURIComponent(city);
+    const mokedData = address === "mok" ? true : false;
+    const input = encodeURIComponent(address);
+    let data = [];
 
     try {
       dispatch({
@@ -19,7 +21,15 @@ export const getWeather =
         },
       });
 
-      const data = await getWeatherData({ input, mokedData });
+      if (mokedData || !process.env.REACT_APP_SERVER) {
+        data = await getWeatherData({ input, mokedData });
+      } else {
+        const dataFromServer = await axios.get(
+          `${process.env.REACT_APP_SERVER}?address=${input}`
+        );
+
+        data = dataFromServer?.data;
+      }
 
       dispatch({
         type: types.GET_WEATHER,
