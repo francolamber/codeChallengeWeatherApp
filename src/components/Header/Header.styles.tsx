@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import * as React from "react";
 
-const Header = styled.div`
+export const Header = styled.div`
   width: 100%;
   padding: 20px 0px;
   display: flex;
@@ -12,11 +11,3 @@ const Header = styled.div`
   font-weight: 500;
   margin-bottom: 30px;
 `;
-
-const HeaderComponent: React.FC = () => (
-  <Header>
-    <div>Weather App</div>
-  </Header>
-);
-
-export default HeaderComponent;

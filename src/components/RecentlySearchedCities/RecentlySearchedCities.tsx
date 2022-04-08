@@ -1,44 +1,19 @@
-import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { getWeather } from "../reduxStore/weather/actions/getWeather";
+import { getWeather } from "../../reduxStore/weather/actions/getWeather";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import * as React from "react";
+import { RecentlySearchedCitiesProps } from "./RecentlySearchedCities.types";
+import {
+  ContainerRecentSearched,
+  RecentlySearchedTitle,
+  RecentSearched,
+  RecentSearchedActionsContainer,
+  SelectRecentSearchedContainer,
+} from "./RecentlySearchedCities.styles";
 
-const ContainerRecentSearched = styled.div`
-  width: 100%;
-  margin-top: 40px;
-`;
-
-const RecentlySearchedTitle = styled.div`
-  font-weight: 400;
-  font-size: 20px;
-`;
-
-const RecentSearched = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-`;
-
-const SelectRecentSearchedContainer = styled.div`
-  margin-left: 10px;
-`;
-
-const RecentSearchedActionsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-interface Props {
-  cityHistory: string[];
-  setCity: (arg: string) => void;
-  setCityHistory: (arg: string[]) => void;
-}
-
-const RecentlySearchedCities: React.FC<Props> = ({
+const RecentlySearchedCities: React.FC<RecentlySearchedCitiesProps> = ({
   cityHistory,
   setCityHistory,
   setCity,

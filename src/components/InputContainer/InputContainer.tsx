@@ -1,63 +1,19 @@
-import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { getWeather } from "../reduxStore/weather/actions/getWeather";
+import { getWeather } from "../../reduxStore/weather/actions/getWeather";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { clearWeather } from "../reduxStore/weather/actions/clearWeather";
+import { clearWeather } from "../../reduxStore/weather/actions/clearWeather";
 import * as React from "react";
+import {
+  ContainerForm,
+  InputCity,
+  FromRevomeIcon,
+  ButtonSubmit,
+} from "./InputContainer.styles";
+import { InputContainerProps } from "./InputContainer.types";
 
-const InputCity = styled.input`
-  background: transparent;
-  width: 90%;
-  padding: 5px;
-  font-size: 18px;
-  margin: 8px 0;
-  color: white;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 2px solid white;
-
-  &:focus-visible {
-    outline: none;
-    }
-  }
-`;
-
-const ButtonSubmit = styled.button`
-  background-color: #445064;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 58%;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  cursor: pointer;
-`;
-
-const ContainerForm = styled.div`
-  width: 530px;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const FromRevomeIcon = styled.div`
-  left: -20px;
-  position: relative;
-  top: 10px;
-`;
-
-interface Props {
-  city: string;
-  cityHistory: string[];
-  setCity: (arg: string) => void;
-  setCityHistory: (arg: string[]) => void;
-}
-
-const InptuContainer: React.FC<Props> = ({
+const InptuContainer: React.FC<InputContainerProps> = ({
   city,
   setCity,
   cityHistory,
@@ -81,6 +37,10 @@ const InptuContainer: React.FC<Props> = ({
   const addCityHistoryToLocalStorage = (city): void => {
     const cities = cityHistory;
     let newCities = [];
+
+    if (cities.includes(city)) {
+      return;
+    }
 
     if (cities.length === 0) {
       newCities = [city];
